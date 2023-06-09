@@ -1,17 +1,18 @@
 import React, { useCallback, useState } from "react";
+import { IAuthData } from "types/authType";
 
-const useInputs = () => {
-  const [value, setValue] = useState<{
-    [key: string]: string;
-  }>({});
+interface IInput extends IAuthData {
+  [key: string]: string;
+}
+
+const useInputs = (initValue: IInput) => {
+  const [value, setValue] = useState(initValue);
   const onHandler = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      const testId = e.target.dataset["testid"] as string;
       setValue({
         ...value,
-        [testId]: e.target.value,
+        [e.target.id]: e.target.value,
       });
-      console.log(value);
     },
     [value]
   );

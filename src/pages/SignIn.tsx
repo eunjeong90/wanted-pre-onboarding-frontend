@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
-import useInputs from "lib/hooks/useInputs";
+import useInputs from "lib/client/hooks/useInputs";
 
 const SignUp = () => {
-  const [signUpInputs, onHandler] = useInputs();
+  const [signInInputs, onHandler] = useInputs({
+    email: "",
+    password: "",
+  });
   const [emailCheck, setEmailCheck] = useState({
     validation: false,
     msg: "",
@@ -13,7 +16,7 @@ const SignUp = () => {
   });
   useEffect(() => {
     const emailRegex = /@/;
-    if (!emailRegex.test(signUpInputs["email-input"])) {
+    if (!emailRegex.test(signInInputs.email)) {
       setEmailCheck({
         validation: false,
         msg: "@가 포함되어야 합니다.",
@@ -24,9 +27,9 @@ const SignUp = () => {
         msg: "",
       });
     }
-  }, [signUpInputs]);
+  }, [signInInputs]);
   useEffect(() => {
-    const password = signUpInputs["password-input"];
+    const password = signInInputs.password;
     if (password?.length < 8) {
       setPasswordCheck({
         validation: false,
@@ -38,7 +41,7 @@ const SignUp = () => {
         msg: "",
       });
     }
-  }, [signUpInputs]);
+  }, [signInInputs]);
 
   return (
     <div>
@@ -50,12 +53,12 @@ const SignUp = () => {
             type="text"
             id="email"
             data-testid="email-input"
-            value={signUpInputs.email}
+            value={signInInputs.email}
             onChange={onHandler}
             placeholder="example@example.com"
           />
         </label>
-        {signUpInputs["email-input"] && (
+        {signInInputs.email && (
           <p
             style={{
               color: emailCheck.validation ? "black" : "red",
@@ -71,12 +74,12 @@ const SignUp = () => {
             type="password"
             id="password"
             data-testid="password-input"
-            value={signUpInputs.password}
+            value={signInInputs.password}
             onChange={onHandler}
             placeholder="8자 이상 입력"
           />
         </label>
-        {signUpInputs["password-input"] && (
+        {signInInputs.password && (
           <p
             style={{
               color: passwordCheck.validation ? "black" : "red",

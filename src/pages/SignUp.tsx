@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
-import useInputs from "lib/hooks/useInputs";
+import useInputs from "lib/client/hooks/useInputs";
 
 const SignUp = () => {
-  const [signUpInputs, onHandler] = useInputs();
+  const [signUpInputs, onHandler] = useInputs({
+    email: "",
+    password: "",
+  });
   const [emailCheck, setEmailCheck] = useState({
     validation: false,
     msg: "",
@@ -13,7 +16,7 @@ const SignUp = () => {
   });
   useEffect(() => {
     const emailRegex = /@/;
-    if (!emailRegex.test(signUpInputs["email-input"])) {
+    if (!emailRegex.test(signUpInputs.email)) {
       setEmailCheck({
         validation: false,
         msg: "@가 포함되어야 합니다.",
@@ -26,7 +29,7 @@ const SignUp = () => {
     }
   }, [signUpInputs]);
   useEffect(() => {
-    const password = signUpInputs["password-input"];
+    const password = signUpInputs.password;
     if (password?.length < 8) {
       setPasswordCheck({
         validation: false,
@@ -55,7 +58,7 @@ const SignUp = () => {
             placeholder="example@example.com"
           />
         </label>
-        {signUpInputs["email-input"] && (
+        {signUpInputs.email && (
           <p
             style={{
               color: emailCheck.validation ? "black" : "red",
@@ -76,7 +79,7 @@ const SignUp = () => {
             placeholder="8자 이상 입력"
           />
         </label>
-        {signUpInputs["password-input"] && (
+        {signUpInputs.password && (
           <p
             style={{
               color: passwordCheck.validation ? "black" : "red",
