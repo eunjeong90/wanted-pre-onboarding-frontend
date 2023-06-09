@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import useInputs from "lib/client/hooks/useInputs";
+import { authPost } from "lib/client/api/auth/authApi";
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const [signUpInputs, onHandler] = useInputs({
     email: "",
     password: "",
@@ -42,11 +45,20 @@ const SignUp = () => {
       });
     }
   }, [signUpInputs]);
+  const onSignUp = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    authPost(signUpInputs, "signup")
+      .then((res) => {
+        console.log(JSON.stringify(res, null, 2));
+        navigate("/signin");
+      })
+      .catch((error) => console.log(error));
+  };
 
   return (
     <div>
       <h2>회원가입</h2>
-      <form>
+      <form onSubmit={onSignUp}>
         <label htmlFor="email">
           아이디
           <input
