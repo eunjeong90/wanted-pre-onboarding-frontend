@@ -5,6 +5,10 @@ import { authPost } from "lib/client/api/auth/authApi";
 
 const SignUp = () => {
   const navigate = useNavigate();
+  useEffect(() => {
+    if (localStorage.getItem("token")) navigate("/todo");
+  }, []);
+
   const [signInInputs, onHandler] = useInputs({
     email: "",
     password: "",
@@ -56,6 +60,7 @@ const SignUp = () => {
       })
       .catch((error) => console.log(error));
   };
+
   return (
     <div>
       <h2>로그인</h2>

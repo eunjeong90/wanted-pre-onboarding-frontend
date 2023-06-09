@@ -5,6 +5,10 @@ import { authPost } from "lib/client/api/auth/authApi";
 
 const SignUp = () => {
   const navigate = useNavigate();
+  useEffect(() => {
+    if (localStorage.getItem("token")) navigate("/todo");
+  }, []);
+
   const [signUpInputs, onHandler] = useInputs({
     email: "",
     password: "",
