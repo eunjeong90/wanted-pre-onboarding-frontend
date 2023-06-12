@@ -1,6 +1,6 @@
-import { createTodo, getTodo } from "lib/client/api/toDo/toDoApi";
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { createTodo, getTodo, updateTodo } from "lib/client/api/toDo/toDoApi";
 import { IToDoData } from "types/toDoType";
 
 const Todo = () => {
@@ -30,14 +30,17 @@ const Todo = () => {
       alert("내용을 입력해주세요!");
       return;
     } else {
-      createTodo(todoValue)
-        .then((res) => console.log(res))
-        .catch((error) => console.log(error));
-
+      createTodo(todoValue);
       todoInputRef.current.value = "";
     }
   };
 
+  const onCheckTodo = ({ id, isCompleted, todo }: IToDoData) => {
+    isCompleted = !isCompleted;
+    updateTodo({ id, isCompleted, todo }).then(() => {
+      getTodo().then((res) => setToDo(res.data));
+    });
+  };
   return (
     <>
       <div>
@@ -55,27 +58,15 @@ const Todo = () => {
         <h2>오늘 할 일</h2>
         <div>
           <ul>
-            <li>
-              <label>
-                <input type="checkbox" />
-                <span>TODO 1</span>
-              </label>
-              <button data-testid="modify-button">수정</button>
-              <button data-testid="delete-button">삭제</button>
-            </li>
-            <li>
-              <label>
-                <input type="checkbox" />
-                <span>TODO 2</span>
-                <button data-testid="modify-button">수정</button>
-                <button data-testid="delete-button">삭제</button>
-              </label>
-            </li>
-            {toDo.map((todo: IToDoData) => (
-              <li key={todo.id}>
+            {toDo.map((data: IToDoData) => (
+              <li key={data.id}>
                 <label>
-                  <input type="checkbox" />
-                  <span>{todo.todo}</span>
+                  <input
+                    type="checkbox"
+                    checked={data.isCompleted}
+                    onChange={() => onCheckTodo(data)}
+                  />
+                  <span>{data.todo}</span>
                 </label>
                 <button data-testid="modify-button">수정</button>
                 <button data-testid="delete-button">삭제</button>
