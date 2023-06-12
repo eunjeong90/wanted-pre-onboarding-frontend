@@ -1,12 +1,12 @@
-import React, { Dispatch, SetStateAction, useState } from "react";
-import { deleteTodo, getTodo, updateTodo } from "lib/client/api/toDo/toDoApi";
+import React, { useState } from "react";
+import { deleteTodo, updateTodo } from "lib/client/api/toDo/toDoApi";
 import { IToDoData } from "types/toDoType";
 
 interface IToDoProps {
   data: IToDoData;
-  setToDo: Dispatch<SetStateAction<IToDoData[]>>;
+  getToDos: () => void;
 }
-const TodoList = ({ data, setToDo }: IToDoProps) => {
+const TodoList = ({ data, getToDos }: IToDoProps) => {
   const [isUpdate, setIsUpdate] = useState(false);
   const [updateValue, setUpdateValue] = useState(data);
 
@@ -19,22 +19,20 @@ const TodoList = ({ data, setToDo }: IToDoProps) => {
   const onUpdateTodo = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     updateTodo(updateValue).then(() => {
-      getTodo().then((res) => setToDo(res.data));
+      getToDos();
     });
     setIsUpdate(false);
   };
   const onCheckTodo = ({ id, isCompleted, todo }: IToDoData) => {
     isCompleted = !isCompleted;
     updateTodo({ id, isCompleted, todo }).then(() => {
-      getTodo().then((res) => setToDo(res.data));
+      getToDos();
     });
   };
   const onDeleteTodo = (id: number) => {
-    deleteTodo(id)
-      .then((res) => console.log(res))
-      .then(() => {
-        getTodo().then((res) => setToDo(res.data));
-      });
+    deleteTodo(id).then(() => {
+      getToDos();
+    });
   };
   return (
     <li key={data.id}>
