@@ -1,6 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { createTodo, getTodo, updateTodo } from "lib/client/api/toDo/toDoApi";
+import {
+  createTodo,
+  deleteTodo,
+  getTodo,
+  updateTodo,
+} from "lib/client/api/toDo/toDoApi";
 import { IToDoData } from "types/toDoType";
 
 const Todo = () => {
@@ -10,7 +15,7 @@ const Todo = () => {
   }, []);
 
   const todoInputRef = useRef<HTMLInputElement>(null);
-  const [toDo, setToDo] = useState([]);
+  const [toDo, setToDo] = useState<IToDoData[]>([]);
 
   useEffect(() => {
     getTodo()
@@ -41,6 +46,14 @@ const Todo = () => {
       getTodo().then((res) => setToDo(res.data));
     });
   };
+
+  const onDeleteTodo = (id: number) => {
+    deleteTodo(id)
+      .then((res) => console.log(res))
+      .then(() => {
+        getTodo().then((res) => setToDo(res.data));
+      });
+  };
   return (
     <>
       <div>
@@ -69,7 +82,12 @@ const Todo = () => {
                   <span>{data.todo}</span>
                 </label>
                 <button data-testid="modify-button">수정</button>
-                <button data-testid="delete-button">삭제</button>
+                <button
+                  data-testid="delete-button"
+                  onClick={() => onDeleteTodo(data.id)}
+                >
+                  삭제
+                </button>
               </li>
             ))}
           </ul>

@@ -23,3 +23,9 @@ export const updateTodo = async ({ id, isCompleted, todo }: IToDoData) => {
     data: { isCompleted, todo },
   });
 };
+export const deleteTodo = async (id: number) => {
+  return await clientApi({
+    method: "delete",
+    url: `/todos/${id}`,
+  });
+};
