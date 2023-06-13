@@ -12,7 +12,7 @@ export interface IUrl {
 }
 
 const URL: IUrl = {
-  main: { path: "/main", name: "메인" },
+  main: { path: "/", name: "메인" },
   todo: { path: "/todo", name: "오늘할일" },
   signin: { path: "/signin", name: "로그인" },
   signup: { path: "/signup", name: "회원가입" },
@@ -23,8 +23,8 @@ const Nav = () => {
     <Navigation>
       <NavList>
         {Object.keys(URL).map((urlKey: string) => {
-          const currentMatch = useMatch(urlKey);
           const urlObj = URL[urlKey];
+          const currentMatch = useMatch(urlObj.path);
           return (
             <>
               <NavItem isActive={currentMatch !== null}>

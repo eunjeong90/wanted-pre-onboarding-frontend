@@ -7,7 +7,7 @@ import Todo from "pages/Todo";
 const Router = () => {
   return (
     <Routes>
-      <Route path="/main" element={<Main />} />
+      <Route path="/" element={<Main />}></Route>
       <Route path="/signin" element={<SignIn />} />
       <Route path="/signup" element={<SignUp />} />
       <Route path="/todo" element={<Todo />} />
