@@ -21,6 +21,7 @@ const SignUp = () => {
     validation: false,
     msg: "",
   });
+
   useEffect(() => {
     const emailRegex = /@/;
     if (!emailRegex.test(signUpInputs.email)) {
@@ -56,7 +57,14 @@ const SignUp = () => {
         console.log(JSON.stringify(res, null, 2));
         navigate("/signin");
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        const errorRes = error.response.data;
+        console.log(error.response);
+        if (errorRes.statusCode === 400) {
+          alert(`${errorRes.message}\n로그인 페이지로 이동합니다`);
+          navigate("/signin");
+        }
+      });
   };
 
   return (
