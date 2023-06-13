@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useInputs from "lib/client/hooks/useInputs";
 import { authPost } from "lib/client/api/auth/authApi";
+import { ContentBox } from "styles/shared";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -68,7 +69,7 @@ const SignUp = () => {
   };
 
   return (
-    <div>
+    <ContentBox>
       <h2>회원가입</h2>
       <form onSubmit={onSignUp}>
         <label htmlFor="email">
@@ -123,7 +124,7 @@ const SignUp = () => {
           회원가입
         </button>
       </form>
-    </div>
+    </ContentBox>
   );
 };
 

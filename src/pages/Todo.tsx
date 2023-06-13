@@ -4,6 +4,7 @@ import { getTodo } from "lib/client/api/toDo/toDoApi";
 import { IToDoData } from "types/toDoType";
 import MakeTodo from "components/MakeTodo";
 import TodoList from "components/TodoList";
+import { ContentBox } from "styles/shared";
 
 const Todo = () => {
   const navigate = useNavigate();
@@ -25,7 +26,7 @@ const Todo = () => {
   }, [toDo]);
 
   return (
-    <>
+    <ContentBox>
       <div>
         <MakeTodo getToDos={getToDos} />
       </div>
@@ -39,7 +40,7 @@ const Todo = () => {
           </ul>
         </div>
       </div>
-    </>
+    </ContentBox>
   );
 };
 
