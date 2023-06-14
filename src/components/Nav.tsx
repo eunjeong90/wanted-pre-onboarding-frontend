@@ -7,7 +7,7 @@ const Nav = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const onRedirect = (chose: string) => {
-    if (!localStorage.getItem("token") && location.pathname === "/") {
+    if (!localStorage.getItem("access_token") && location.pathname === "/") {
       navigate(chose);
     }
   };

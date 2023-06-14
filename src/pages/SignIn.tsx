@@ -13,7 +13,7 @@ import {
 const SignUp = () => {
   const navigate = useNavigate();
   useEffect(() => {
-    if (localStorage.getItem("token")) navigate("/todo");
+    if (localStorage.getItem("access_token")) navigate("/todo");
   }, []);
 
   const [signInInputs, onHandler] = useInputs({
@@ -61,7 +61,7 @@ const SignUp = () => {
     e.preventDefault();
     authPost(signInInputs, "signin")
       .then((res) => {
-        localStorage.setItem("token", res.data.access_token);
+        localStorage.setItem("access_token", res.data.access_token);
         console.log(JSON.stringify(res, null, 2));
         navigate("/todo");
       })

@@ -9,7 +9,7 @@ import { ContentBox, Heading } from "styles/shared";
 const Todo = () => {
   const navigate = useNavigate();
   useEffect(() => {
-    if (!localStorage.getItem("token")) navigate("/signin");
+    if (!localStorage.getItem("access_token")) navigate("/signin");
   }, []);
 
   const [toDo, setToDo] = useState<IToDoData[]>([]);

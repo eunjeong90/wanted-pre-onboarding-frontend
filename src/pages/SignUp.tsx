@@ -13,7 +13,7 @@ import {
 const SignUp = () => {
   const navigate = useNavigate();
   useEffect(() => {
-    if (localStorage.getItem("token")) navigate("/todo");
+    if (localStorage.getItem("access_token")) navigate("/todo");
   }, []);
 
   const [signUpInputs, onHandler] = useInputs({
