@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import useInputs from "lib/client/hooks/useInputs";
 import { authPost } from "lib/client/api/auth/authApi";
 import {
-  AuthHeading,
+  Heading,
   AuthInputLabel,
   AuthMsg,
   AuthSubmitBtn,
@@ -70,7 +70,7 @@ const SignUp = () => {
 
   return (
     <ContentBox>
-      <AuthHeading>로그인</AuthHeading>
+      <Heading>로그인</Heading>
       <form onSubmit={onSignIn}>
         <AuthInputLabel htmlFor="email">
           <span>아이디</span>
