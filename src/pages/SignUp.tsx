@@ -2,7 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useInputs from "lib/client/hooks/useInputs";
 import { authPost } from "lib/client/api/auth/authApi";
-import { ContentBox } from "styles/shared";
+import {
+  AuthHeading,
+  AuthInputLabel,
+  AuthMsg,
+  AuthSubmitBtn,
+  ContentBox,
+} from "styles/shared";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -70,51 +76,45 @@ const SignUp = () => {
 
   return (
     <ContentBox>
-      <h2>회원가입</h2>
+      <AuthHeading>회원가입</AuthHeading>
       <form onSubmit={onSignUp}>
-        <label htmlFor="email">
-          아이디
-          <input
-            type="text"
-            id="email"
-            data-testid="email-input"
-            value={signUpInputs.email}
-            onChange={onHandler}
-            placeholder="example@example.com"
-          />
-        </label>
+        <div>
+          <AuthInputLabel htmlFor="email">
+            <span>아이디</span>
+            <input
+              type="text"
+              id="email"
+              data-testid="email-input"
+              value={signUpInputs.email}
+              onChange={onHandler}
+              placeholder="example@example.com"
+            />
+          </AuthInputLabel>
+        </div>
         {signUpInputs.email && (
-          <p
-            style={{
-              color: emailCheck.validation ? "black" : "red",
-              fontWeight: "bold",
-            }}
-          >
+          <AuthMsg $validation={emailCheck.validation}>
             {emailCheck.msg}
-          </p>
+          </AuthMsg>
         )}
-        <label htmlFor="password">
-          비밀번호
-          <input
-            type="password"
-            id="password"
-            data-testid="password-input"
-            value={signUpInputs.password}
-            onChange={onHandler}
-            placeholder="8자 이상 입력"
-          />
-        </label>
+        <div>
+          <AuthInputLabel htmlFor="password">
+            <span>비밀번호</span>
+            <input
+              type="password"
+              id="password"
+              data-testid="password-input"
+              value={signUpInputs.password}
+              onChange={onHandler}
+              placeholder="8자 이상 입력"
+            />
+          </AuthInputLabel>
+        </div>
         {signUpInputs.password && (
-          <p
-            style={{
-              color: passwordCheck.validation ? "black" : "red",
-              fontWeight: "bold",
-            }}
-          >
+          <AuthMsg $validation={passwordCheck.validation}>
             {passwordCheck.msg}
-          </p>
+          </AuthMsg>
         )}
-        <button
+        <AuthSubmitBtn
           type="submit"
           data-testid="signup-button"
           disabled={
@@ -122,7 +122,7 @@ const SignUp = () => {
           }
         >
           회원가입
-        </button>
+        </AuthSubmitBtn>
       </form>
     </ContentBox>
   );
