@@ -6,9 +6,9 @@ import URL from "../lib/client/routerPath";
 const Nav = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const onRedirect = () => {
+  const onRedirect = (chose: string) => {
     if (!localStorage.getItem("token") && location.pathname === "/") {
-      navigate("/signin");
+      navigate(chose);
     }
   };
   return (
@@ -19,7 +19,10 @@ const Nav = () => {
           const currentMatch = useMatch(urlObj.path);
           return (
             <>
-              <NavItem isActive={currentMatch !== null} onClick={onRedirect}>
+              <NavItem
+                isActive={currentMatch !== null}
+                onClick={() => onRedirect(urlObj.path)}
+              >
                 <NavLink to={urlObj.path}>{urlObj.name}</NavLink>
               </NavItem>
             </>
