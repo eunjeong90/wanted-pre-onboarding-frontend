@@ -5,7 +5,6 @@
 
 
 ## Getting Started
-***
 1.깃 레파지토리 클론 : 
 
     git clone https://github.com/eunjeong90/wanted-pre-onboarding-frontend.git
@@ -23,14 +22,9 @@
 
 
 ## Dependencies
-***
-<img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=black" />
-<img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=TypeScript&logoColor=white"/> 
-<img src="https://img.shields.io/badge/axios-671CDE?style=for-the-badge&logo=React&logoColor=black" /> 
-<img src="https://img.shields.io/badge/StyledComponents-DB7093?style=for-the-badge&logo=StyledComponents&logoColor=white" /> 
+<img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=black" /><img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=TypeScript&logoColor=white"/><img src="https://img.shields.io/badge/axios-671CDE?style=for-the-badge&logo=React&logoColor=black" /><img src="https://img.shields.io/badge/StyledComponents-DB7093?style=for-the-badge&logo=StyledComponents&logoColor=white" /> 
 
 ## Features
-***
 ### 회원가입 및 로그인 구현 
 - 유효성 검사
   - 잘못된 정보 기입시 에러 메세지 표시
