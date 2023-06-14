@@ -1,47 +1,43 @@
-# Getting Started with Create React App
+# `원티드 프리온보딩 프론트엔드 - 선발 과제`
+원티드 프리온보딩 프론트엔드 인턴쉽 **지원자 장은정**의 레파지토리 입니다.
+* 선발 과제 배포 링크 : <https://wanted-pre-onboarding-frontend-murex-seven.vercel.app>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
 
-In the project directory, you can run:
+## Getting Started
+***
+1.깃 레파지토리 클론 : 
 
-### `npm start`
+    git clone https://github.com/eunjeong90/wanted-pre-onboarding-frontend.git
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+2.설치 경로로 이동 :
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+    cd wanted-pre-onboarding-frontend
+3.설치 :
 
-### `npm test`
+    npm install
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+4.실행 : 
 
-### `npm run build`
+    npm start
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Dependencies
+***
+<img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=black" />
+<img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=TypeScript&logoColor=white"/> 
+<img src="https://img.shields.io/badge/axios-671CDE?style=for-the-badge&logo=React&logoColor=black" /> 
+<img src="https://img.shields.io/badge/StyledComponents-DB7093?style=for-the-badge&logo=StyledComponents&logoColor=white" /> 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Features
+***
+### 회원가입 및 로그인 구현 
+- 유효성 검사
+  - 잘못된 정보 기입시 에러 메세지 표시
+- JWT token 사용자 인증
+- 가입한 이력이 있는 아이디의 경우 원티드 서버 에러 메세지를 띄워준 후 로그인 페이지로 이동
+- useInputs 훅을 사용하여 회원가입과 로그인 input 핸들링
+### CRUD :
+- 투두리스트(오늘할일)에서는 작성된 리스트 데이터가 보여지며 데이터 추가, 수정, 삭제가 가능.
+- 투두리스트 컴포넌트 리스트 불러올 시 useCallback 최적화
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-# wanted-pre-onboarding-frontend
