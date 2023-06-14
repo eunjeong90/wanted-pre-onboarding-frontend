@@ -1,24 +1,16 @@
 import React from "react";
-import { NavLink, useMatch } from "react-router-dom";
+import { NavLink, useLocation, useMatch, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-
-export interface IUrlInfo {
-  path: string;
-  name: string;
-}
-
-export interface IUrl {
-  [key: string]: IUrlInfo;
-}
-
-const URL: IUrl = {
-  main: { path: "/", name: "메인" },
-  todo: { path: "/todo", name: "오늘할일" },
-  signin: { path: "/signin", name: "로그인" },
-  signup: { path: "/signup", name: "회원가입" },
-};
+import URL from "../lib/client/routerPath";
 
 const Nav = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const onRedirect = () => {
+    if (!localStorage.getItem("token") && location.pathname === "/") {
+      navigate("/signin");
+    }
+  };
   return (
     <Navigation>
       <NavList>
@@ -27,7 +19,7 @@ const Nav = () => {
           const currentMatch = useMatch(urlObj.path);
           return (
             <>
-              <NavItem isActive={currentMatch !== null}>
+              <NavItem isActive={currentMatch !== null} onClick={onRedirect}>
                 <NavLink to={urlObj.path}>{urlObj.name}</NavLink>
               </NavItem>
             </>
