@@ -11,10 +11,10 @@ interface IToDoProps {
 const TodoList = ({ data, getToDos }: IToDoProps) => {
   const [isUpdate, setIsUpdate] = useState(false);
   const [updateValue, setUpdateValue] = useState(data);
+  const { id, isCompleted, todo } = updateValue;
 
   const onUpdateHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
-    const { id, isCompleted } = updateValue;
     const update = e.target.value;
     setUpdateValue({ id, todo: update, isCompleted });
   };
@@ -25,9 +25,10 @@ const TodoList = ({ data, getToDos }: IToDoProps) => {
     });
     setIsUpdate(false);
   };
-  const onCheckTodo = ({ id, isCompleted, todo }: IToDoData) => {
-    isCompleted = !isCompleted;
-    updateTodo({ id, isCompleted, todo }).then(() => {
+  const onCheckTodo = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const checked = e.target.checked;
+    setUpdateValue({ id, isCompleted: checked, todo });
+    updateTodo({ id, isCompleted: checked, todo }).then(() => {
       getToDos();
     });
   };
@@ -42,7 +43,7 @@ const TodoList = ({ data, getToDos }: IToDoProps) => {
         <input
           type="checkbox"
           checked={data.isCompleted}
-          onChange={() => onCheckTodo(data)}
+          onChange={onCheckTodo}
         />
         {isUpdate ? (
           <TodoUpdateForm onSubmit={onUpdateTodo}>
